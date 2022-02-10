@@ -1,2 +1,0 @@
-# fourInARow
-JS projekt
