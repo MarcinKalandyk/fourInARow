@@ -7,13 +7,33 @@ import game
 def utworz_kolko(canv, x, y, r):
     """
     Eysowanie koła
-    :param canv:
+    :param canv: pole do tworzenia na nim obiektu w tym porzypadku na tym polu narysowane jest koło
     :param x: Wspolrzedna x
-    :param y:
-    :param r:
+    :param y: Wspolrzedna y
+    :param r: srednica
     :return: id kolka
     """
     return canv.create_oval(x - r, y - r, x + r, y + r)
+
+
+def okno_koniec_gry(wynik_gry):
+    """
+
+    :param wynik_gry: zwyciężca przekazywany w postaci string + parametr
+    :return: tworzy pop-up okno informujące o wygranym
+    """
+    x = 75
+    y = 15
+    popup = tkinter.Toplevel()
+    popup.geometry("250x200")
+    game_over_label = tkinter.Label(popup, text="Koniec")
+    game_over_label.pack(fill='x', padx=x, pady=y)
+
+    result_label = tkinter.Label(popup, text=wynik_gry)
+    result_label.pack(fill='x', padx=x, pady=y)
+
+    close_button = tkinter.Button(popup, text="Ok", command=popup.destroy)
+    close_button.pack(padx=x, pady=y)
 
 
 window_height = 800
@@ -72,13 +92,12 @@ przycisk_kolumna = {
     7: button7,
 }
 
-
 OPTIONS = [
-    "Reguły",
-    "Zasada 1",
-    "asdadadsjkdsdjknjkfgasfjk asdklfhjasjklfdjklfbasf dsfkjahsfhdjkas sdkjfhaskjdfh sadkjfksdjfh afkdsj hkljh",
-    "asdadadsjkdsdjknjkfgasfjk asdklfhjasjklfdjklfbasf dsfkjahsfhdjkas sdkjfhaskjdfh sadkjfksdjfh afkdsj hkljh",
-    "Zasada 2",
+    "Warunki zwycięstwa Połącz 4",
+    "połącz 4 pola swojego koloru nie przedzielone polami koloru przeciwnika:",
+    "-pionowo",
+    "-poziomo",
+    "-po przekątnej",
 ]
 
 variable = tkinter.StringVar(window)
@@ -87,4 +106,5 @@ variable.set(OPTIONS[0])
 w = tkinter.OptionMenu(window, variable, *OPTIONS)
 w.place(x=520, y=120)
 
-tkinter.mainloop()
+if __name__ == '__main__':
+    tkinter.mainloop()
